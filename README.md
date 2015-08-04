@@ -21,6 +21,6 @@ pg2sqlite -d database.dump -o sqlite.db
 
 `pg2sqlite -d <file> -o <file> [-f <true|false>]`
 
-* `-d <file>` - file that contains dump of postgresql database (made by pg_dump)
+* `-d <file>` - file that contains dump of postgresql database (made by pg_dump, accepts .gz)
 * `-o <file>` - file name of newly created sqlite3 database
 * `-f <true|false>` - default: false, force database re-creation if database file alredy exists
