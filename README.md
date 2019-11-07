@@ -7,6 +7,8 @@ Easy to use solution to create sqlite database from postgresql dump.
 * silently ignore unsupported postgresql features
 * gzip support
 
+In release section you can download pre-built version of pg2sqlite.jar
+
 ## How to build
 ```sh
 git clone https://github.com/caiiiycuk/postgresql-to-sqlite.git
