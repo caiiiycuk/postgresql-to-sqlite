@@ -1,11 +1,11 @@
 language: scala
 scala:
-   - 2.11.7
+   - 2.11.12
 branches:
   only:
     - master
 jdk:
-  - openjdk10
+  - openjdk9
 
 script:
   - sbt ++$TRAVIS_SCALA_VERSION clean

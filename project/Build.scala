@@ -8,7 +8,7 @@ object Build extends Build {
     name := "postgresql-to-sqlite",
     organization := "com.github.caiiiycuk",
     version := "0.0.1-SNAPSHOT",
-    scalaVersion := "2.11.7",
+    scalaVersion := "2.11.12",
 
     libraryDependencies ++= Seq(
       "com.github.scopt" %% "scopt" % "3.3.0",
