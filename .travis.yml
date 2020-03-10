@@ -5,7 +5,7 @@ branches:
   only:
     - master
 jdk:
-  - openjdk9
+  - oraclejdk9
 
 script:
   - sbt ++$TRAVIS_SCALA_VERSION clean
