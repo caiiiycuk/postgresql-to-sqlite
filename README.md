@@ -34,3 +34,19 @@ pg2sqlite -d database.dump -o sqlite.db
 * `-d <file>` - file that contains dump of postgresql database (made by pg_dump, accepts .gz)
 * `-o <file>` - file name of newly created sqlite3 database
 * `-f <true|false>` - default: false, force database re-creation if database file alredy exists
+
+## Tips
+
+pg2sqlite does not support database schemas. If your dump file includes schema definition It will print errors like this:
+```
+Create Table - Exception:
+unknown database <schema>
+[SQL] 'CREATE TABLE <schema>.table (...;'
+```
+You can easily fix dump file with `sed`:
+```
+$ sed 's/public\.//' -i  output.dump
+$ pg2sqlite -d output.dump -o sqlite.db
+```
+Where `public` is a schema name.
+
