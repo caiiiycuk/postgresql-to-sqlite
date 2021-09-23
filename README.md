@@ -47,6 +47,7 @@ unknown database <schema>
 ```
 You can easily fix dump file with `sed`:
 ```
+# sed 's/<schema name>\.//' -i  output.dump
 $ sed 's/public\.//' -i  output.dump
 $ pg2sqlite -d output.dump -o sqlite.db
 ```
