@@ -46,10 +46,10 @@ unknown database <schema>
 [SQL] 'CREATE TABLE <schema>.table (...;'
 ```
 You can easily fix dump file with `sed`:
-```
-# sed 's/<schema name>\.//' -i  output.dump
-$ sed 's/public\.//' -i  output.dump
-$ pg2sqlite -d output.dump -o sqlite.db
+```sh
+# sed 's/<schema name>\.//' -i  database.dump
+sed 's/public\.//' -i  database.dump
+pg2sqlite -d output.dump -o sqlite.db
 ```
 Where `public` is a schema name.
 
