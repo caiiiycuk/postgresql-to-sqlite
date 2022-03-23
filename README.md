@@ -53,3 +53,20 @@ pg2sqlite -d output.dump -o sqlite.db
 ```
 Where `public` is a schema name.
 
+## Docker
+
+Clone the repository and run 
+```
+docker build -t postgresql-to-sqlite:latest .
+```
+inside the postgresql-to-sqlite folder.
+
+Use 
+```
+docker run -v /home/john/dbdata:/dbdata -e psource='/dbdata/pqdump.sql' -e starget='/dbdata/output.sqlite'  -it postgresql-to-sqlite:latest
+```
+where
+- -v: is the volume where the pqdump file is located. (and later the output file)
+- -e: `psource` is the pqdump filename and folder & `starget` the sqlite filename and folder
+
+p.s. the schema removal has to be done outside the container
