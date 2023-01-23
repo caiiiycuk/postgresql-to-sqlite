@@ -7,7 +7,7 @@ object Build extends Build {
   lazy val project = Project("root", file("."), settings = Seq(
     name := "postgresql-to-sqlite",
     organization := "com.github.caiiiycuk",
-    version := "0.0.1-SNAPSHOT",
+    version := "1.0.1",
     scalaVersion := "2.11.12",
 
     libraryDependencies ++= Seq(

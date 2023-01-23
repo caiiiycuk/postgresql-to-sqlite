@@ -32,10 +32,10 @@ class DSL(line: String) {
       partials match {
         case head :: _ if head.startsWith("constraint") =>
           None
-        case head :: _ if head.startsWith("to_tsvector") =>
+        case head :: _ if head.startsWith("to_tsvector(") =>
           val name = columnDefenition.takeBraces.head.tokens.last
           Some(Column(name, None))
-        case head :: _ if head.startsWith("lower") || head.startsWith("upper") =>
+        case head :: _ if head.startsWith("lower(") || head.startsWith("upper(") =>
           val name = columnDefenition.takeBraces.head.tokens.head
           Some(Column(name, None))
         case head :: sqlType :: _ =>
