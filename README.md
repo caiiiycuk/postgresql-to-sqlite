@@ -1,4 +1,4 @@
-# postgresql-to-sqlite (pg2sqlite) [![Build Status](https://travis-ci.org/caiiiycuk/postgresql-to-sqlite.svg)](https://travis-ci.org/caiiiycuk/postgresql-to-sqlite)
+# postgresql-to-sqlite (pg2sqlite)
 
 Easy to use solution to create sqlite database from postgresql dump.
 
