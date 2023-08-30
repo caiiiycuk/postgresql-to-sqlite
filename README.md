@@ -1,4 +1,5 @@
 # postgresql-to-sqlite (pg2sqlite)
+[![Build](https://github.com/caiiiycuk/postgresql-to-sqlite/actions/workflows/build.yml/badge.svg)](https://github.com/caiiiycuk/postgresql-to-sqlite/actions/workflows/build.yml)
 
 Easy to use solution to create sqlite database from postgresql dump.
 
