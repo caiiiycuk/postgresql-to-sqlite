@@ -13,7 +13,7 @@ object Build extends Build {
     libraryDependencies ++= Seq(
       "com.github.scopt" %% "scopt" % "3.3.0",
       "ch.qos.logback" % "logback-classic" % "1.1.2",
-      "org.xerial" % "sqlite-jdbc" % "3.8.10.2",
+      "org.xerial" % "sqlite-jdbc" % "3.42.0.0",
       "org.scalatest" %% "scalatest" % "2.2.4" % "test"
     )
   ) ++ SbtOneJar.oneJarSettings)
