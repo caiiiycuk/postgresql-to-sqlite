@@ -71,3 +71,9 @@ where
 - -e: `psource` is the pqdump filename and folder & `starget` the sqlite filename and folder
 
 p.s. the schema removal has to be done outside the container
+
+## Support
+
+If you appreciate this project, please consider voting for it on Stack Overflow:
+
+https://stackoverflow.com/questions/6148421/how-to-convert-a-postgres-database-to-sqlite/69293251#69293251
