@@ -12,14 +12,6 @@ Easy to use solution to create sqlite database from postgresql dump.
 
 In [release section](https://github.com/caiiiycuk/postgresql-to-sqlite/releases/) you can download pre-built version of pg2sqlite.jar
 
-## How to build
-```sh
-git clone https://github.com/caiiiycuk/postgresql-to-sqlite.git
-cd postgresql-to-sqlite
-sbt one-jar
-cp target/scala-2.11/postgresql-to-sqlite_2.11-0.0.1-SNAPSHOT-one-jar.jar pg2sqlite.jar
-```
-
 ## How to use
 
 ```sh
@@ -53,6 +45,14 @@ sed 's/public\.//' -i  database.dump
 pg2sqlite -d output.dump -o sqlite.db
 ```
 Where `public` is a schema name.
+
+## How to build
+```sh
+git clone https://github.com/caiiiycuk/postgresql-to-sqlite.git
+cd postgresql-to-sqlite
+sbt one-jar
+cp target/scala-2.11/postgresql-to-sqlite_2.11-0.0.1-SNAPSHOT-one-jar.jar pg2sqlite.jar
+```
 
 ## Docker
 
