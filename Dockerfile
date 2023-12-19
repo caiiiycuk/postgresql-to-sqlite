@@ -5,5 +5,5 @@ RUN mkdir -p /p2s
 WORKDIR /p2s
 COPY . ./
 RUN sbt one-jar
-RUN cp target/scala-2.11/postgresql-to-sqlite_2.11-1.0.1-one-jar.jar pq2sqlite.jar
-CMD exec java -jar pq2sqlite.jar -d "$psource" -o "$starget"
+RUN cp target/scala-2.11/postgresql-to-sqlite_2.11-*-one-jar.jar pg2sqlite.jar
+CMD exec java -jar pg2sqlite.jar -d "$psource" -o "$starget"
