@@ -14,12 +14,16 @@ In [release section](https://github.com/caiiiycuk/postgresql-to-sqlite/releases/
 
 ## How to use
 
-```sh
-#  Making dump
-pg_dump -h host -U user -f database.dump database
+1. Install jre (java) on your PC
 
-#  Making sqlite database
-pg2sqlite -d database.dump -o sqlite.db
+2. Create dump from postgresql database
+```sh
+pg_dump -h host -U user -f database.dump database
+```
+
+3. Make sqlite database from it
+```
+java -jar pg2sqlite-1.0.3.jar -d database.dump -o sqlite.db
 ```
 
 ## Command line arguments
