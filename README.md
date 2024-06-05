@@ -30,9 +30,24 @@ java -jar pg2sqlite-1.0.3.jar -d database.dump -o sqlite.db
 
 `pg2sqlite -d <file> -o <file> [-f <true|false>]`
 
-* `-d <file>` - file that contains dump of postgresql database (made by pg_dump, accepts .gz)
-* `-o <file>` - file name of newly created sqlite3 database
-* `-f <true|false>` - default: false, force database re-creation if database file alredy exists
+* `**-d** <file>` - file that contains dump of postgresql database (made by pg_dump, accepts .gz)
+* `**-o** <file>` - file name of newly created sqlite3 database
+* `**-f** <true|false>` - default: false, force database re-creation if database file alredy exists
+* `**-t** <integer|text|real>` - default: integer, change sqlite3 date class (read below)
+
+## Timestamps
+
+SQLite does not have a storage class set aside for storing dates and/or times. Instead, the built-in [Date And Time Functions](https://www.sqlite.org/lang_datefunc.html) of SQLite are capable of storing dates and times as TEXT, REAL, or INTEGER values:
+
+* TEXT as ISO8601 strings ("YYYY-MM-DD HH:MM:SS.SSS").
+* REAL as Julian day numbers, the number of days since noon in Greenwich on November 24, 4714 B.C. according to the proleptic Gregorian calendar.
+* INTEGER as Unix Time, the number of seconds since 1970-01-01 00:00:00 UTC.
+
+By default pg2sqlite uses **INTEGER** to store dates, but you can change this with **-t** argument (`-t text` or `-t real`), use it like this:
+
+```sh
+java -jar pg2sqlite-1.0.3.jar -d database.dump -o sqlite.db -t text
+```
 
 ## Tips
 
