@@ -15,7 +15,7 @@ object Boot extends App with Log {
   import config._
 
   val size = pgdump.length()
-  val connection = Connection.sqlite(sqlite)
+  val connection = Connection.sqlite(sqlite, config.dateClass)
   val iterator = LineIterator(pgdump)
   val loggedIterator = LoggedIterator(iterator, () => 100.0 * iterator.readed / size)
   val dumpInserter = new DumpInserter(connection)

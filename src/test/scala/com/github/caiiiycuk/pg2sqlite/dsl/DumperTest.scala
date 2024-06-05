@@ -1,5 +1,7 @@
 package com.github.caiiiycuk.pg2sqlite.dsl
 
+import org.scalatest.FlatSpec
+import org.scalatest.Matchers
 import com.github.caiiiycuk.pg2sqlite.iterator.Line
 import com.github.caiiiycuk.pg2sqlite.{Connection, DumpInserter}
 import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
@@ -10,12 +12,23 @@ class DumperTest extends FlatSpec with Matchers with BeforeAndAfter {
 
   val dbFile = new File("test.db")
 
-  private def makeConnection() = {
+  private final val DATE_DUMP =
+    """
+      |CREATE TABLE test (
+      |    current timestamp without time zone NOT NULL
+      |);
+      |
+      |COPY test (current) FROM stdin;
+      |2024-05-06 15:14:12
+      |\.
+      |""".stripMargin
+
+  private def makeConnection(dateClass: String = Connection.DEFAULT_DATE_CLASS) = {
     if (dbFile.exists()) {
       dbFile.delete()
     }
 
-    Connection.sqlite(dbFile)
+    Connection.sqlite(dbFile, dateClass)
   }
 
   after {
@@ -54,4 +67,65 @@ class DumperTest extends FlatSpec with Matchers with BeforeAndAfter {
     inserter.insert(dump.iterator)
     connection.close
   }
+
+  "dumper" should "should respect date class (Default)" in {
+    val connection = makeConnection()
+    val inserter = new DumpInserter(connection)
+    val dump = DATE_DUMP.split("\n")
+      .zipWithIndex
+      .map {
+        case (text, num) =>
+          Line(num, text)
+      }
+
+    inserter.insert(dump.iterator)
+    connection.withStatement { statment =>
+      val rs = statment.executeQuery("SELECT * FROM test")
+      rs.next() should equal(true)
+      rs.getString(1) should equal("1714983252000")
+      rs.close()
+    }
+    connection.close
+  }
+
+  "dumper" should "should respect date class (text)" in {
+    val connection = makeConnection(Connection.TEXT_DATE_CLASS)
+    val inserter = new DumpInserter(connection)
+    val dump = DATE_DUMP.split("\n")
+      .zipWithIndex
+      .map {
+        case (text, num) =>
+          Line(num, text)
+      }
+
+    inserter.insert(dump.iterator)
+    connection.withStatement { statment =>
+      val rs = statment.executeQuery("SELECT * FROM test")
+      rs.next() should equal(true)
+      rs.getString(1) should equal("2024-05-06 15:14:12.000")
+      rs.close()
+    }
+    connection.close
+  }
+
+  "dumper" should "should respect date class (real)" in {
+    val connection = makeConnection(Connection.REAL_DATE_CLASS)
+    val inserter = new DumpInserter(connection)
+    val dump = DATE_DUMP.split("\n")
+      .zipWithIndex
+      .map {
+        case (text, num) =>
+          Line(num, text)
+      }
+
+    inserter.insert(dump.iterator)
+    connection.withStatement { statment =>
+      val rs = statment.executeQuery("SELECT * FROM test")
+      rs.next() should equal(true)
+      rs.getString(1) should equal("2460436.84319444")
+      rs.close()
+    }
+    connection.close
+  }
+
 }

@@ -21,7 +21,7 @@ class DumpInserter(connection: Connection) {
       val head = iterator.next()
       val fullIterator = Iterator(head) ++ iterator
 
-      COMMANDS.find(_.matchHead(head)).map { command =>
+      COMMANDS.find(_.matchHead(head)).foreach { command =>
         command.apply(connection, fullIterator)
       }
 
