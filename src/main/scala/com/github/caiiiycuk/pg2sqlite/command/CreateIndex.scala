@@ -26,7 +26,7 @@ object CreateIndex extends Command with Log {
       val createIndexParts = rawSql.split("""\s+on\s+""")
       val indexName = createIndexParts(0).tokens(INDEX_NAME_POSITION)
       val tableName = createIndexParts(1).tokens(TABLE_NAME_POSITION)
-      val columns = rawSql.takeBraces.head.columns.map(_.name).mkString(",")
+      val columns = rawSql.takeBraces.head.columns.map(column => s"[${column.name}]").mkString(",")
 
       (tableName, s"CREATE INDEX $indexName ON $tableName ($columns)", columns)
     } catch {
